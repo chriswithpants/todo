@@ -8,6 +8,8 @@ namespace ToDo.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        private string _thingToAdd;
+
         public MainViewModel()
         {
             ThingsToDo = new ObservableCollection<ThingToDo>
@@ -21,7 +23,16 @@ namespace ToDo.ViewModel
 
         public ICommand AddThingCommand { get; set; }
 
-        public string ThingToAdd { get; set; }
+        public string ThingToAdd
+        {
+            get { return _thingToAdd; }
+            set
+            {
+                if (value == _thingToAdd) return;
+                _thingToAdd = value; 
+                RaisePropertyChanged(() => ThingToAdd);
+            }
+        }
 
         public void AddThingToList()
         {
