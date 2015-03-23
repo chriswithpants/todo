@@ -1,4 +1,4 @@
-namespace ToDo.Stuff
+namespace ToDo.Models
 {
     public class ThingToDo
     {
