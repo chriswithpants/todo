@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -41,5 +42,19 @@ namespace ToDo.ViewModel
         }
 
         public ObservableCollection<ThingToDo> ThingsToDo { get; set; }
+
+        public void RemoveThing(ThingToDo thingToRemove)
+        {
+            ThingsToDo.Remove(thingToRemove);
+        }
+
+        public void ClearCompletedThings()
+        {
+            var completedThings = ThingsToDo.Where(t => t.Completed).ToArray();
+            foreach (var completedThing in completedThings)
+            {
+                ThingsToDo.Remove(completedThing);
+            }
+        }
     }
 }
